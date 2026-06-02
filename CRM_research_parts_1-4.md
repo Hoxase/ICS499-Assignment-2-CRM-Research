@@ -105,7 +105,7 @@ Provide examples from:
 * Healthcare
   * They automate appointment reminders, track theyre health care jpurmey, and ensure HIPAA compliance
 * Education
-  *Track students enrollment and progress throguhtout their journey in school
+  * Track students enrollment and progress throguhtout their journey in school
 * Manufacturing
   * Track vendors, spending, quotes,
 * Nonprofits
