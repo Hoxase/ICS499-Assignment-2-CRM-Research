@@ -14,9 +14,13 @@ ICS499-Assignment 2 CRM research
 
 ---
 
-Deliverables
-You need to submit a GITHUB link containing the following. You can submit the link at the end of the class today (6/1/26) and you continue to elaborate (or add more files/content) to the same repo during the week. The final submission is due on Saturday 6/6.
+# Deliverables
 
+You need to submit a GITHUB link containing the following.
+You can submit the link at the end of the class today (6/1/26) and you continue to elaborate (or add more files/content) to the same repo during the week.
+The final submission is due on Saturday 6/6.
+
+```text
 exploring_crm_systems/
 
 ├── README.md
@@ -31,6 +35,8 @@ exploring_crm_systems/
     ├── contacts.png
     ├── leads.png
     └── reports.png
+```
+---
 
 ## Executive Summary
 
