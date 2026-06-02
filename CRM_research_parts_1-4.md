@@ -207,10 +207,16 @@ I went with Odoo
 Capture and include screenshots of:
 
 * Login Screen
+ * <img width="1749" height="606" alt="image" src="https://github.com/user-attachments/assets/79fba89c-961f-466b-bfa2-475b3796dce4" />
 * Dashboard
+ * <img width="1708" height="782" alt="image" src="https://github.com/user-attachments/assets/dfb598dc-f261-43cf-9e73-fb6a60aaad96" />
 * Contacts Module
+ * <img width="1706" height="464" alt="image" src="https://github.com/user-attachments/assets/ebe0abc8-6b5e-4143-a7d9-0ded8a28b87e" />
 * Leads Module
+ * <img width="1704" height="986" alt="image" src="https://github.com/user-attachments/assets/3919313f-2c32-40db-a58d-200e0416b196" />
 * Reports or Analytics Module
+ * <img width="1703" height="659" alt="image" src="https://github.com/user-attachments/assets/42f50535-1e37-47cb-98d5-31fd4cabbb48" />
+ 
 
 ---
 
