@@ -241,7 +241,7 @@ Answer the following:
 * What challenges occurred?
   * none so far it's pretty intuitive
 * How did AI help?
-  * suggetsed i as a easy lightweight solution
+  * suggested it as a easy lightweight solution
 
 ### Product Experience
 
