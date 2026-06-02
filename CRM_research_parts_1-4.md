@@ -57,7 +57,7 @@ You must document:
 
 ---
 
-# Part 1 (INCOMPLETE) – AI-Based CRM Discovery (10 Points)
+# Part 1 (COMPLETE) – AI-Based CRM Discovery (10 Points)
 
 Use one or more AI tools to research CRM systems.
 
@@ -84,10 +84,15 @@ Use one or more AI tools to research CRM systems.
 
 
 * Sales management
+  * CRM's provide a structrured view of every deal in rpogress
 * Customer management
+  * All customer data and info is consolidated to one place (contact info, communication history, purchase records, preferences, and support tickets)
 * Marketing
+  * CRM systems power targeted marketing by segmenting customers based on behavior, purchase history, or demographic data.
 * Customer support
+  * Most CRM inlcude a ticketing system where agents can manage, escelate, track, and solve issues
 * Reporting and analytics
+  * Dashboards and reports give visibility into KPIs such as average deal size, customer acquisition cost, customer lifetime value, churn rate, and support ticket volume. These insights drive strategic decisions
 
 ---
 
@@ -96,27 +101,27 @@ Use one or more AI tools to research CRM systems.
 Provide examples from:
 
 * Retail
+  * Resolves customer data scattered across multiple systems eg point-of-sale systems, loyalty programs, and email lists by centralizing it all in one place  
 * Healthcare
+  * They automate appointment reminders, track theyre health care jpurmey, and ensure HIPAA compliance
 * Education
+  *Track students enrollment and progress throguhtout their journey in school
 * Manufacturing
+  * Track vendors, spending, quotes,
 * Nonprofits
+  * Track donation hisory and engagment
 
 ---
 
 ### Q4. What are the major modules found in a CRM?
 
-Examples include:
-
-* Contacts
-* Accounts
-* Leads
-* Opportunities
-* Activities
-* Tasks
-* Marketing Campaigns
-* Customer Support Tickets
-* Reports
-* Dashboards
+* Contacts: Store individual person records (name, email, phone, company, history)
+* Accounts: Store organization records and can link multiple contacts to one account
+* Leads: Track unqualified prospects
+* Tasks: Assign and track to-do items for users 
+* Customer Support Tickets: Log customer issues; track resolution status.
+* Reports: Pre-built and custom data queries and exports  
+* Dashboards: Visual KPI (Key Performance Indicator) displays; real-time metrics for management 
 
 ---
 
@@ -125,9 +130,14 @@ Examples include:
 For each major topic, answer:
 
 * Which AI tool generated the response?
+  * Claude
 * Was the response complete?
+  * Complete
 * Did you verify the information?
+  * Yes, I cross-referenced against documentation and online summerizations.
 * How trustworthy was the result?
+  * High. Module definitions are well-established in the industry.    
+
 
 ---
 
