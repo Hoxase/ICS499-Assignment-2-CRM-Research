@@ -39,3 +39,19 @@ exploring_crm_systems/
 This project documents an AI-assisted investigation of Customer Relationship Management (CRM) systems. Acting as a SW consultant, I used Claude (Anthropic), ChatGPT (OpenAI), and Perplexity AI to research the CRM landscape — from common concepts and commercial products to open-source solutions and custom architecture design.
 
 Key findings:
+
+## AI Tools Used
+
+## CRM Research Findings
+
+## CRM Product Comparisons
+
+## Open Source CRM Evaluation
+
+## CRM Architecture Proposal
+
+## Prompt Engineering Examples
+
+## Lessons Learned
+
+## References
