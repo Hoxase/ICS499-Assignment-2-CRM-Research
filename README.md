@@ -20,7 +20,7 @@ ICS499-Assignment 2 CRM research
 exploring_crm_systems/
 
 ├── README.md
-├── crm_research.md
+├── CRM_research_parts_1-4.md
 ├── prompts_used.md
 ├── references.md
 ├── architecture/
