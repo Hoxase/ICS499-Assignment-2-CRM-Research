@@ -258,118 +258,171 @@ Explain your reasoning.
 
 # Part 4 (INCOMPLETE) – AI-Assisted CRM Architecture Exploration (10 Points)
 
-Assume your organization wants to build a CRM system using the following technology stack:
-
-### Front-End
-
-* HTML
-* CSS
-* JavaScript
-* jQuery
-* Bootstrap
-
-### Server-Side
-
-* PHP
-
-### Database
-
-* MySQL
-
-Use AI tools to investigate how such a CRM might be designed.
+## Technology Stack
+- **Front-End:** HTML, CSS, JavaScript, jQuery, Bootstrap 5
+- **Server-Side:** PHP 8.x
+- **Database:** MySQL 8.x
 
 ---
 
-## Questions
+## Functional Modules
 
-### Functional Modules
+The following modules should be included in a custom PHP/MySQL CRM:
 
-What modules should be included?
-
-Examples:
-
-* Authentication
-* Contacts
-* Leads
-* Opportunities
-* Tasks
-* Reports
-
----
-
-### Database Design
-
-What tables would be required?
-
-Examples:
-
-* Users
-* Roles
-* Contacts
-* Leads
-* Accounts
-* Opportunities
-* Activities
-* Tickets
+| Module              | Description                                                        |
+|---------------------|--------------------------------------------------------------------|
+| **Authentication**  | Login, session management, password reset, remember-me            |
+| **Users & Roles**   | User management, role assignment, permission matrix               |
+| **Contacts**        | Individual person records with full history                       |
+| **Accounts**        | Company/organization records; parent of Contacts                  |
+| **Leads**           | Unqualified prospects; convert to Contact + Opportunity           |
+| **Opportunities**   | Sales deals with stage, value, close date, probability            |
+| **Activities**      | Calls, meetings, emails logged against any record                 |
+| **Tasks**           | Assignable to-do items with due dates and status                  |
+| **Dashboard**       | Summary widgets: open deals, tasks due today, recent activity     |
+| **Reports**         | Filterable lists; exportable to CSV                               |
 
 ---
 
-### Useful Libraries
+## Database Design
 
-Research libraries that could accelerate development.
+### Core Tables
 
-Examples:
+```sql
+-- Users and access control
+users          (id, name, email, password_hash, role_id, created_at, updated_at, is_active)
+roles          (id, name, description)
+permissions    (id, role_id, module, can_read, can_create, can_edit, can_delete)
 
-* Bootstrap
-* DataTables
-* Chart.js
-* PHPMailer
-* Composer
+-- CRM Entities
+accounts       (id, name, industry, website, phone, address, assigned_user_id, created_at, updated_at, deleted_at)
+contacts       (id, first_name, last_name, email, phone, title, account_id, assigned_user_id, created_at, updated_at, deleted_at)
+leads          (id, first_name, last_name, email, phone, company, status, source, assigned_user_id, converted_at, created_at, updated_at, deleted_at)
+opportunities  (id, name, account_id, amount, stage, close_date, probability, assigned_user_id, created_at, updated_at, deleted_at)
 
-Explain the purpose of each library.
+-- Activity Tracking
+activities     (id, type, subject, description, related_type, related_id, user_id, activity_date, created_at)
+tasks          (id, subject, description, due_date, status, priority, assigned_user_id, related_type, related_id, created_at, updated_at)
+
+-- Support
+tickets        (id, subject, description, status, priority, contact_id, assigned_user_id, created_at, updated_at, resolved_at)
+```
+
+### Key Design Decisions
+- **Soft deletes** (`deleted_at`) on core entities to preserve relational integrity and enable record recovery.
+- **Polymorphic relationships** (`related_type`, `related_id`) on Activities and Tasks to link them to any entity type without separate junction tables for each.
+- **Assigned user** on every core entity for ownership and filtering.
 
 ---
 
-### Security Considerations
+## Useful Libraries
 
-Research:
-
-* Authentication
-* Authorization
-* Password Security
-* SQL Injection Prevention
-* Cross-Site Scripting (XSS)
-* Data Privacy
+| Library           | Purpose                                                                         |
+|-------------------|---------------------------------------------------------------------------------|
+| **Bootstrap 5**   | Responsive UI grid, pre-built components (modals, tables, forms, nav)           |
+| **DataTables**    | Client-side and server-side pagination, sorting, and searching for list views   |
+| **Chart.js**      | Dashboard charts — bar, line, doughnut for pipeline, activity, and revenue data |
+| **PHPMailer**     | SMTP email sending for notifications, password resets, and automated follow-ups |
+| **Composer**      | PHP dependency management; manages PHPMailer and other server-side libraries    |
+| **jQuery**        | DOM manipulation, AJAX calls to PHP endpoints, DataTables dependency            |
+| **Select2**       | Enhanced dropdowns with search — useful for account/contact relationship pickers |
 
 ---
 
-### MVP Proposal
+## Security Considerations
 
-Describe the smallest useful CRM that could be built.
+### Authentication
+- Passwords stored using `password_hash()` with `PASSWORD_BCRYPT` (never plain text or MD5).
+- Sessions managed with `session_start()`, `session_regenerate_id(true)` on login.
+- CSRF tokens required on all state-changing forms.
+- Account lockout after N failed login attempts.
 
-What features would be included in Version 1?
+### Authorization
+- Every PHP endpoint checks session validity and user role before processing.
+- Role-permission matrix checked server-side — never rely solely on UI hiding.
+
+### SQL Injection Prevention
+- All database queries use **PDO prepared statements** with bound parameters.
+- Example:
+```php
+$stmt = $pdo->prepare("SELECT * FROM contacts WHERE id = :id AND deleted_at IS NULL");
+$stmt->execute([':id' => $id]);
+```
+- Never concatenate user input directly into SQL strings.
+
+### Cross-Site Scripting (XSS)
+- All output to HTML escaped using `htmlspecialchars($value, ENT_QUOTES, 'UTF-8')`.
+- Content Security Policy (CSP) headers set to restrict inline scripts.
+
+### Data Privacy
+- Sensitive fields (email, phone) encrypted at rest using AES-256 if required by compliance.
+- Audit log table records who accessed or modified sensitive records.
+- GDPR/data deletion requests handled via soft delete + scheduled anonymization job.
+
+---
+
+## MVP Proposal (Version 1)
+
+The smallest useful CRM that delivers real value would include:
+
+### Version 1 Scope
+1. **User authentication** — Login, logout, password reset
+2. **Contacts module** — Create, read, update, soft delete contact records
+3. **Leads module** — Capture and list leads; mark as contacted/converted
+4. **Opportunities module** — Basic pipeline with stage and close date
+5. **Activity log** — Add notes to any record
+6. **Simple dashboard** — Count of open leads, open opportunities, tasks due today
+7. **CSV export** — Export any list to CSV
+
+### Explicitly Out of Scope for V1
+- Marketing campaigns
+- Ticketing/support
+- Role-based permissions (single admin role only)
+- Email integration
+- Reporting beyond simple lists
+
+### Rationale
+This MVP delivers immediate value to a small sales team — they can stop using spreadsheets for contact and deal tracking — without the complexity of a full platform build. V2 adds roles, tasks, and basic reports. V3 adds email integration and advanced reporting.
 
 ---
 
 ## Architecture Diagram
 
-Create a simple architecture diagram showing:
+See `architecture/crm_architecture.png` for the visual diagram.
 
-```text
-Browser
-   |
-HTML/CSS/JS/Bootstrap
-   |
-PHP Application Layer
-   |
-MySQL Database
+```
+┌─────────────────────────────────────────────┐
+│                  BROWSER                    │
+│  HTML5 + CSS3 + Bootstrap 5 + jQuery        │
+│  Chart.js (dashboards)                      │
+│  DataTables (list views)                    │
+└──────────────────┬──────────────────────────┘
+                   │ HTTP/HTTPS Requests
+                   ▼
+┌─────────────────────────────────────────────┐
+│            PHP APPLICATION LAYER            │
+│                                             │
+│  Router (index.php + URL routing)           │
+│  Controllers (contacts, leads, opps, auth)  │
+│  Models (PDO data access layer)             │
+│  Views (PHP templates)                      │
+│  Middleware (auth check, CSRF validation)   │
+│  PHPMailer (email notifications)            │
+└──────────────────┬──────────────────────────┘
+                   │ PDO Prepared Statements
+                   ▼
+┌─────────────────────────────────────────────┐
+│              MYSQL 8 DATABASE               │
+│                                             │
+│  users, roles, permissions                  │
+│  contacts, accounts, leads                  │
+│  opportunities, activities, tasks           │
+│  tickets                                    │
+└─────────────────────────────────────────────┘
 ```
 
-You may use of of these tools:
-* Excalidraw
-* Draw.io
-* Mermaid
-
-Include the diagram in your report.
-
----
+**Deployment Environment:**
+- Web Server: Apache 2.4 or Nginx
+- PHP: 8.1+ with PDO, mbstring, openssl extensions
+- OS: Ubuntu 22.04 LTS
+- SSL: Let's Encrypt (HTTPS required for production)
