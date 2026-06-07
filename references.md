@@ -66,7 +66,7 @@ All sources were accessed during the research period for this assignment.
 
 ---
 
-## AI Tools Used (With Disclosure)
+## AI Tools Used
 
 21. Anthropic. "Claude." Claude.ai. https://www.claude.ai — *Used for architecture design, structured research, and document drafting.*
 
@@ -75,5 +75,3 @@ All sources were accessed during the research period for this assignment.
 23. Perplexity AI. "Perplexity." Perplexity.ai. https://www.perplexity.ai — *Used for real-time pricing verification with cited sources.*
 
 ---
-
-*All AI-generated content in this project was reviewed, validated against primary sources where noted, and modified to reflect personal analysis and observations.*
