@@ -80,7 +80,7 @@ The proposed architecture follows a classic MVC-inspired layered design:
 
 See the architecture diagram: [`architecture/crm_architecture.png`](architecture/crm_architecture.png)
 
-Full module and database design details are in [`crm_research.md`](CRM_research_parts_1-4.md) — Part 4.
+Full module and database design details are in [`CRM_research_parts_1-4.md`](CRM_research_parts_1-4.md) — Part 4.
 
 ## Prompt Engineering Examples
 See prompts_used.md for the five most effective prompts used during this project, along with analysis of AI strengths and weaknesses.
